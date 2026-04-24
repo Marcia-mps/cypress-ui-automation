@@ -1,6 +1,8 @@
 # Cypress UI Automation - Testes E2E
 
-Este projeto tem como objetivo validar fluxos de cadastro de usuários utilizando testes automatizados E2E com Cypress, aplicando boas práticas de automação e organização de código com Page Object.
+## Sobre o projeto
+
+Projeto desenvolvido como parte da formação em Engenharia de Qualidade de Software (QA), com foco em automação de testes E2E utilizando Cypress.
 
 ---
 
@@ -21,6 +23,7 @@ Este projeto tem como objetivo validar fluxos de cadastro de usuários utilizand
 ---
 
 ## Estrutura do projeto
+
 cypress/
 ├── e2e/
 │ └── cadastro.cy.js
