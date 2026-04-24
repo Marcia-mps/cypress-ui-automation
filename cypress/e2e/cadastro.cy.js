@@ -7,12 +7,12 @@ describe('Cadastro de usuário', () => {
     cadastroPage.acessarSite()
     cadastroPage.acessarTelaCadastro()
 
+    cadastroPage.preencherNome('Marcia Teste')
     cadastroPage.preencherEmail(`marcia.teste${Date.now()}@email.com`)
-    cadastroPage.preencherSenha('123456')
 
     cadastroPage.clicarCadastrar()
 
-    cadastroPage.validarCadastroSucesso()
+    cadastroPage.validarTelaInformacoesConta()
   })
 
 })
