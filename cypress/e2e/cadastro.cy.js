@@ -1,18 +1,25 @@
-import cadastroPage from '../pages/cadastroPage'
-
 describe('Cadastro de usuário', () => {
 
-  it('Deve realizar cadastro com sucesso', () => {
+  beforeEach(() => {
+    cy.visit('https://automationexercise.com/login')
+  })
 
-    cadastroPage.acessarSite()
-    cadastroPage.acessarTelaCadastro()
+  it('Deve realizar cadastro com dados de fixture', () => {
 
-    cadastroPage.preencherNome('Marcia Teste')
-    cadastroPage.preencherEmail(`marcia.teste${Date.now()}@email.com`)
+    cy.fixture('example').then((dados) => {
 
-    cadastroPage.clicarCadastrar()
+      cy.get('input[data-qa="signup-name"]').type(dados.nome)
 
-    cadastroPage.validarTelaInformacoesConta()
+      cy.get('input[data-qa="signup-email"]').type(
+        `${Date.now()}${dados.email}`
+      )
+
+      cy.get('button[data-qa="signup-button"]').click()
+
+      cy.contains('Enter Account Information').should('be.visible')
+
+    })
+
   })
 
 })
