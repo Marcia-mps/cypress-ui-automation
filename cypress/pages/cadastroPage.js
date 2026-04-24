@@ -1,28 +1,28 @@
 class CadastroPage {
 
-  acessarSite() {
-    cy.visit('https://automationexercise.com')
-  }
+    acessarSite() {
+        cy.visit('http://lojaebac.ebaconline.art.br/')
+    }
 
-  acessarTelaCadastro() {
-    cy.contains('Signup / Login').click()
-  }
+    acessarTelaCadastro() {
+        cy.contains('Minha Conta').click()
+    }
 
-  preencherNome(nome) {
-    cy.get('input[data-qa="signup-name"]').type(nome)
-  }
+    preencherEmail(email) {
+        cy.get('#reg_email').type(email)
+    }
 
-  preencherEmail(email) {
-    cy.get('input[data-qa="signup-email"]').type(email)
-  }
+    preencherSenha(senha) {
+        cy.get('#reg_password').type(senha)
+    }
 
-  clicarCadastrar() {
-    cy.get('button[data-qa="signup-button"]').click()
-  }
+    clicarCadastrar() {
+        cy.get('button[name="register"]').click()
+    }
 
-  validarTelaInformacoesConta() {
-    cy.contains('Enter Account Information').should('be.visible')
-  }
+    validarCadastroSucesso() {
+        cy.contains('Minha conta').should('be.visible')
+    }
 }
 
 export default new CadastroPage()
