@@ -29,9 +29,15 @@ jobs:
       - name: Executar testes Cypress
         run: npx cypress run
 
+      - name: Preparar relatório para GitHub Pages
+        if: always()
+        run: |
+          mkdir -p public
+          cp cypress/reports/*.html public/index.html
+
       - name: Publicar relatório no GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./cypress/reports
+          publish_dir: ./public
