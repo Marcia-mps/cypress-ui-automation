@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-04-24T04:26:08.176Z",
+    "end": "2026-04-24T04:26:15.851Z",
+    "duration": 7675,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "3ee865fa-a787-440c-a74d-5cd0da2e35c6",
+      "title": "",
+      "fullFile": "cypress\\e2e\\cadastro.cy.js",
+      "file": "cypress\\e2e\\cadastro.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "57bb9a81-a05e-4961-a2b7-eccae5f7d930",
+          "title": "Cadastro de usuário",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Deve realizar cadastro com sucesso",
+              "fullTitle": "Cadastro de usuário Deve realizar cadastro com sucesso",
+              "timedOut": null,
+              "duration": 5344,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_cadastroPage.default.acessarSite();\n_cadastroPage.default.acessarTelaCadastro();\n_cadastroPage.default.preencherNome('Marcia Teste');\n_cadastroPage.default.preencherEmail(`marcia.teste${Date.now()}@email.com`);\n_cadastroPage.default.clicarCadastrar();\n_cadastroPage.default.validarTelaInformacoesConta();",
+              "err": {},
+              "uuid": "846449f8-1fd8-4351-88c7-131eac21c4a6",
+              "parentUUID": "57bb9a81-a05e-4961-a2b7-eccae5f7d930",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "846449f8-1fd8-4351-88c7-131eac21c4a6"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 5344,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}

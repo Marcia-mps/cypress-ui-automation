@@ -1,0 +1,109 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2026-04-24T04:26:17.514Z",
+    "end": "2026-04-24T04:26:27.721Z",
+    "duration": 10207,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "2bf1739f-8d9c-4d26-ba74-ecdd5be12c3e",
+      "title": "",
+      "fullFile": "cypress\\e2e\\cypress\\carrinho-intercept.cy.js",
+      "file": "cypress\\e2e\\cypress\\carrinho-intercept.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "d3cca08f-e1c2-49e2-b222-b97bb7eefe71",
+          "title": "Carrinho de compras com intercept",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Deve simular adicionar item no carrinho com intercept",
+              "fullTitle": "Carrinho de compras com intercept Deve simular adicionar item no carrinho com intercept",
+              "timedOut": null,
+              "duration": 8476,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.intercept('POST', '**/cart/add**', {\n  statusCode: 200,\n  body: {\n    success: true,\n    message: 'Produto adicionado com sucesso'\n  }\n}).as('addToCart');\ncy.request({\n  method: 'POST',\n  url: '/cart/add',\n  failOnStatusCode: false\n});\ncy.wait('@addToCart').then(interception => {\n  expect(interception.response.statusCode).to.eq(200);\n  expect(interception.response.body.success).to.eq(true);\n});",
+              "err": {
+                "message": "CypressError: Timed out retrying after 5000ms: `cy.wait()` timed out waiting `5000ms` for the 1st request to the route: `addToCart`. No request ever occurred.\n\nhttps://on.cypress.io/wait",
+                "estack": "CypressError: Timed out retrying after 5000ms: `cy.wait()` timed out waiting `5000ms` for the 1st request to the route: `addToCart`. No request ever occurred.\n\nhttps://on.cypress.io/wait\n    at cypressErr (https://automationexercise.com/__cypress/runner/cypress_runner.js:78379:18)\n    at Object.errByPath (https://automationexercise.com/__cypress/runner/cypress_runner.js:78437:10)\n    at checkForXhr (https://automationexercise.com/__cypress/runner/cypress_runner.js:138940:84)\n    at <unknown> (https://automationexercise.com/__cypress/runner/cypress_runner.js:138965:28)\n    at tryCatcher (https://automationexercise.com/__cypress/runner/cypress_runner.js:1777:23)\n    at Promise.attempt.Promise.try (https://automationexercise.com/__cypress/runner/cypress_runner.js:4285:29)\n    at whenStable (https://automationexercise.com/__cypress/runner/cypress_runner.js:152052:70)\n    at <unknown> (https://automationexercise.com/__cypress/runner/cypress_runner.js:151967:14)\n    at tryCatcher (https://automationexercise.com/__cypress/runner/cypress_runner.js:1777:23)\n    at Promise._settlePromiseFromHandler (https://automationexercise.com/__cypress/runner/cypress_runner.js:1489:31)\n    at Promise._settlePromise (https://automationexercise.com/__cypress/runner/cypress_runner.js:1546:18)\n    at Promise._settlePromise0 (https://automationexercise.com/__cypress/runner/cypress_runner.js:1591:10)\n    at Promise._settlePromises (https://automationexercise.com/__cypress/runner/cypress_runner.js:1671:18)\n    at Promise._fulfill (https://automationexercise.com/__cypress/runner/cypress_runner.js:1615:18)\n    at <unknown> (https://automationexercise.com/__cypress/runner/cypress_runner.js:5420:46)\nFrom Your Spec Code:\n    at Context.eval (webpack://cypress-ui-automation/./cypress/e2e/cypress/carrinho-intercept.cy.js:22:7)",
+                "diff": null
+              },
+              "uuid": "e72a6b48-661f-4395-b4e0-5039b4a08fe1",
+              "parentUUID": "d3cca08f-e1c2-49e2-b222-b97bb7eefe71",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "e72a6b48-661f-4395-b4e0-5039b4a08fe1"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 8476,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}

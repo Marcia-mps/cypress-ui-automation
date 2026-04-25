@@ -1,0 +1,109 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2026-04-24T04:20:02.476Z",
+    "end": "2026-04-24T04:20:08.920Z",
+    "duration": 6444,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "da7ee0a1-f947-4bf5-bf34-f67f40739f77",
+      "title": "",
+      "fullFile": "cypress\\e2e\\cypress\\carrinho-intercept.cy.js",
+      "file": "cypress\\e2e\\cypress\\carrinho-intercept.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "03a3f331-1ea4-41a7-93f9-ac3fb22a07ae",
+          "title": "Carrinho de compras com intercept",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Deve simular adicionar, atualizar e remover item do carrinho",
+              "fullTitle": "Carrinho de compras com intercept Deve simular adicionar, atualizar e remover item do carrinho",
+              "timedOut": null,
+              "duration": 4463,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.intercept('POST', '**/cart/add**', {\n  statusCode: 200,\n  body: {\n    success: true,\n    message: 'Produto adicionado ao carrinho com sucesso'\n  }\n}).as('adicionarItem');\ncy.intercept('PUT', '**/cart/update**', {\n  statusCode: 200,\n  body: {\n    success: true,\n    message: 'Quantidade atualizada com sucesso',\n    quantity: 2\n  }\n}).as('atualizarItem');\ncy.intercept('DELETE', '**/cart/remove**', {\n  statusCode: 200,\n  body: {\n    success: true,\n    message: 'Produto removido do carrinho com sucesso'\n  }\n}).as('removerItem');\ncy.request('POST', 'https://automationexercise.com/cart/add');\ncy.wait('@adicionarItem').its('response.statusCode').should('eq', 200);\ncy.request('PUT', 'https://automationexercise.com/cart/update');\ncy.wait('@atualizarItem').its('response.body.quantity').should('eq', 2);\ncy.request('DELETE', 'https://automationexercise.com/cart/remove');\ncy.wait('@removerItem').its('response.statusCode').should('eq', 200);",
+              "err": {
+                "message": "CypressError: `cy.request()` failed on:\n\nhttps://automationexercise.com/cart/add\n\nThe response we received from your web server was:\n\n  > 404: Not Found\n\nThis was considered a failure because the status code was not `2xx` or `3xx`.\n\nIf you do not want status codes to cause failures pass the option: `failOnStatusCode: false`\n\n-----------------------------------------------------------\n\nThe request we sent was:\n\nMethod: POST\nURL: https://automationexercise.com/cart/add\nHeaders: {\n  \"Connection\": \"keep-alive\",\n  \"user-agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Cypress/15.14.1 Chrome/138.0.7204.251 Electron/37.6.0 Safari/537.36\",\n  \"accept\": \"*/*\",\n  \"cookie\": \"__eoi=ID=8313179fb6806df1:T=1777004405:RT=1777004405:S=AA-AfjZJ_chsg2rXtBZzmtj439iR; csrftoken=kgEOJdXmvSDA7tgYlrn2AWprluTmJLGhpDgbYstaW5MBaN4ru8wNFoJ6AqoPkyUS; __gads=ID=3ecfb782b1a4730e:T=1777004405:RT=1777004405:S=ALNI_Ma3r2zhpQNyApwMJOHsNBXEMutODg; __gpi=UID=000013f41f942fd0:T=1777004405:RT=1777004405:S=ALNI_MZSMWSIPGABqTYIVHeqFH5FGqGL6g; FCCDCF=%5Bnull%2Cnull%2Cnull%2Cnull%2Cnull%2Cnull%2C%5B%5B32%2C%22%5B%5C%222255085e-c997-48c0-a9b3-9ecc2aa940bf%5C%22%2C%5B1777004407%2C39000000%5D%5D%22%5D%5D%5D; ebacStoreVersion=v2\",\n  \"accept-encoding\": \"gzip, deflate\",\n  \"content-length\": 0\n}\n\n-----------------------------------------------------------\n\nThe response we got was:\n\nStatus: 404 - Not Found\nHeaders: {\n  \"date\": \"Fri, 24 Apr 2026 04:20:08 GMT\",\n  \"content-type\": \"text/html\",\n  \"transfer-encoding\": \"chunked\",\n  \"connection\": \"keep-alive\",\n  \"referrer-policy\": \"same-origin\",\n  \"x-frame-options\": \"DENY\",\n  \"x-content-type-options\": \"nosniff\",\n  \"x-powered-by\": \"Phusion Passenger(R) 6.1.2\",\n  \"status\": \"404 Not Found\",\n  \"vary\": \"Accept-Encoding\",\n  \"report-to\": \"{\\\"group\\\":\\\"cf-nel\\\",\\\"max_age\\\":604800,\\\"endpoints\\\":[{\\\"url\\\":\\\"https://a.nel.cloudflare.com/report/v4?s=kGGRBVsYvqQhkWNsU6quFWEMxniB0uoOzwUiJWbm0FcxredWmBPZSLzHkebbsCER8kZfpT4dhGWA7n2FnVXdL%2FjC2lCGm4vCGljkziWUSu8Hfaph1DhPTzYImOCyXfxa63t%2BjbkGem5x\\\"}]}\",\n  \"server\": \"cloudflare\",\n  \"cf-cache-status\": \"DYNAMIC\",\n  \"nel\": \"{\\\"report_to\\\":\\\"cf-nel\\\",\\\"success_fraction\\\":0.0,\\\"max_age\\\":604800}\",\n  \"content-encoding\": \"gzip\",\n  \"cf-ray\": \"9f12504c3dea6272-GRU\",\n  \"alt-svc\": \"h3=\\\":443\\\"; ma=86400\"\n}\nBody: <!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n  <title>Page not found at /cart/add</title>\n  <meta name=\"robots\" content=\"NONE,NOARCHIVE\">\n  <style type=\"text/css\">\n    html * { padding:0; margin:0; }\n    body * { padding:10px 20px; }\n    body * * { padding:0; }\n    body { font:small sans-serif; background:#eee; color:#000; }\n    body>div { border-bottom:1px solid #ddd; }\n    h1 { font-weight:normal; margin-bottom:.4em; }\n    h1 span { font-size:60%; color:#666; font-weight:normal; }\n    table { border:none; border-collapse: collapse; width:100%; }\n    td, th { vertical-align:top; padding:2px 3px; }\n    th { width:12em; text-align:right; color:#666; padding-right:.5em; }\n    #info { background:#f6f6f6; }\n    #info ol { margin: 0.5em 4em; }\n    #info ol li { font-family: monospace; }\n    #summary { background: #ffc; }\n    #explanation { background:#eee; border-bottom: 0px none; }\n    pre.exception_value { font-family: sans-serif; color: #575757; font-size: 1.5em; margin: 10px 0 10px 0; }\n  </style>\n</head>\n<body>\n  <div id=\"summary\">\n    <h1>Page not found <span>(404)</span></h1>\n    \n    <table class=\"meta\">\n      <tr>\n        <th>Request Method:</th>\n        <td>POST</td>\n      </tr>\n      <tr>\n        <th>Request URL:</th>\n        <td>https://automationexercise.com/cart/add</td>\n      </tr>\n      \n    </table>\n  </div>\n  <div id=\"info\">\n    \n      <p>\n      Using the URLconf defined in <code>automation_exercise.urls</code>,\n      Django tried these URL patterns, in this order:\n      </p>\n      <ol>\n        \n<li>\n  \n      admin/\n      \n  \n</li>\n        \n<li>\n  \n      \n      \n  \n</li>\n        \n<li>\n  \n      get_product_picture/&lt;int:product_id&gt;\n      \n  \n</li>\n        \n<li>\n  \n      produc...\n\n\nhttps://on.cypress.io/request",
+                "estack": "CypressError: `cy.request()` failed on:\n\nhttps://automationexercise.com/cart/add\n\nThe response we received from your web server was:\n\n  > 404: Not Found\n\nThis was considered a failure because the status code was not `2xx` or `3xx`.\n\nIf you do not want status codes to cause failures pass the option: `failOnStatusCode: false`\n\n-----------------------------------------------------------\n\nThe request we sent was:\n\nMethod: POST\nURL: https://automationexercise.com/cart/add\nHeaders: {\n  \"Connection\": \"keep-alive\",\n  \"user-agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Cypress/15.14.1 Chrome/138.0.7204.251 Electron/37.6.0 Safari/537.36\",\n  \"accept\": \"*/*\",\n  \"cookie\": \"__eoi=ID=8313179fb6806df1:T=1777004405:RT=1777004405:S=AA-AfjZJ_chsg2rXtBZzmtj439iR; csrftoken=kgEOJdXmvSDA7tgYlrn2AWprluTmJLGhpDgbYstaW5MBaN4ru8wNFoJ6AqoPkyUS; __gads=ID=3ecfb782b1a4730e:T=1777004405:RT=1777004405:S=ALNI_Ma3r2zhpQNyApwMJOHsNBXEMutODg; __gpi=UID=000013f41f942fd0:T=1777004405:RT=1777004405:S=ALNI_MZSMWSIPGABqTYIVHeqFH5FGqGL6g; FCCDCF=%5Bnull%2Cnull%2Cnull%2Cnull%2Cnull%2Cnull%2C%5B%5B32%2C%22%5B%5C%222255085e-c997-48c0-a9b3-9ecc2aa940bf%5C%22%2C%5B1777004407%2C39000000%5D%5D%22%5D%5D%5D; ebacStoreVersion=v2\",\n  \"accept-encoding\": \"gzip, deflate\",\n  \"content-length\": 0\n}\n\n-----------------------------------------------------------\n\nThe response we got was:\n\nStatus: 404 - Not Found\nHeaders: {\n  \"date\": \"Fri, 24 Apr 2026 04:20:08 GMT\",\n  \"content-type\": \"text/html\",\n  \"transfer-encoding\": \"chunked\",\n  \"connection\": \"keep-alive\",\n  \"referrer-policy\": \"same-origin\",\n  \"x-frame-options\": \"DENY\",\n  \"x-content-type-options\": \"nosniff\",\n  \"x-powered-by\": \"Phusion Passenger(R) 6.1.2\",\n  \"status\": \"404 Not Found\",\n  \"vary\": \"Accept-Encoding\",\n  \"report-to\": \"{\\\"group\\\":\\\"cf-nel\\\",\\\"max_age\\\":604800,\\\"endpoints\\\":[{\\\"url\\\":\\\"https://a.nel.cloudflare.com/report/v4?s=kGGRBVsYvqQhkWNsU6quFWEMxniB0uoOzwUiJWbm0FcxredWmBPZSLzHkebbsCER8kZfpT4dhGWA7n2FnVXdL%2FjC2lCGm4vCGljkziWUSu8Hfaph1DhPTzYImOCyXfxa63t%2BjbkGem5x\\\"}]}\",\n  \"server\": \"cloudflare\",\n  \"cf-cache-status\": \"DYNAMIC\",\n  \"nel\": \"{\\\"report_to\\\":\\\"cf-nel\\\",\\\"success_fraction\\\":0.0,\\\"max_age\\\":604800}\",\n  \"content-encoding\": \"gzip\",\n  \"cf-ray\": \"9f12504c3dea6272-GRU\",\n  \"alt-svc\": \"h3=\\\":443\\\"; ma=86400\"\n}\nBody: <!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n  <title>Page not found at /cart/add</title>\n  <meta name=\"robots\" content=\"NONE,NOARCHIVE\">\n  <style type=\"text/css\">\n    html * { padding:0; margin:0; }\n    body * { padding:10px 20px; }\n    body * * { padding:0; }\n    body { font:small sans-serif; background:#eee; color:#000; }\n    body>div { border-bottom:1px solid #ddd; }\n    h1 { font-weight:normal; margin-bottom:.4em; }\n    h1 span { font-size:60%; color:#666; font-weight:normal; }\n    table { border:none; border-collapse: collapse; width:100%; }\n    td, th { vertical-align:top; padding:2px 3px; }\n    th { width:12em; text-align:right; color:#666; padding-right:.5em; }\n    #info { background:#f6f6f6; }\n    #info ol { margin: 0.5em 4em; }\n    #info ol li { font-family: monospace; }\n    #summary { background: #ffc; }\n    #explanation { background:#eee; border-bottom: 0px none; }\n    pre.exception_value { font-family: sans-serif; color: #575757; font-size: 1.5em; margin: 10px 0 10px 0; }\n  </style>\n</head>\n<body>\n  <div id=\"summary\">\n    <h1>Page not found <span>(404)</span></h1>\n    \n    <table class=\"meta\">\n      <tr>\n        <th>Request Method:</th>\n        <td>POST</td>\n      </tr>\n      <tr>\n        <th>Request URL:</th>\n        <td>https://automationexercise.com/cart/add</td>\n      </tr>\n      \n    </table>\n  </div>\n  <div id=\"info\">\n    \n      <p>\n      Using the URLconf defined in <code>automation_exercise.urls</code>,\n      Django tried these URL patterns, in this order:\n      </p>\n      <ol>\n        \n<li>\n  \n      admin/\n      \n  \n</li>\n        \n<li>\n  \n      \n      \n  \n</li>\n        \n<li>\n  \n      get_product_picture/&lt;int:product_id&gt;\n      \n  \n</li>\n        \n<li>\n  \n      produc...\n\n\nhttps://on.cypress.io/request\n    at <unknown> (https://automationexercise.com/__cypress/runner/cypress_runner.js:136440:72)\n    at tryCatcher (https://automationexercise.com/__cypress/runner/cypress_runner.js:1777:23)\n    at Promise._settlePromiseFromHandler (https://automationexercise.com/__cypress/runner/cypress_runner.js:1489:31)\n    at Promise._settlePromise (https://automationexercise.com/__cypress/runner/cypress_runner.js:1546:18)\n    at Promise._settlePromise0 (https://automationexercise.com/__cypress/runner/cypress_runner.js:1591:10)\n    at Promise._settlePromises (https://automationexercise.com/__cypress/runner/cypress_runner.js:1671:18)\n    at _drainQueueStep (https://automationexercise.com/__cypress/runner/cypress_runner.js:2377:12)\n    at _drainQueue (https://automationexercise.com/__cypress/runner/cypress_runner.js:2370:9)\n    at Async._drainQueues (https://automationexercise.com/__cypress/runner/cypress_runner.js:2386:5)\n    at Async.drainQueues (https://automationexercise.com/__cypress/runner/cypress_runner.js:2256:14)\nFrom Your Spec Code:\n    at Context.eval (webpack://cypress-ui-automation/./cypress/e2e/cypress/carrinho-intercept.cy.js:33:7)",
+                "diff": null
+              },
+              "uuid": "9e8708f2-e67b-4346-967e-8a5a938c4c7e",
+              "parentUUID": "03a3f331-1ea4-41a7-93f9-ac3fb22a07ae",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "9e8708f2-e67b-4346-967e-8a5a938c4c7e"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 4463,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}
