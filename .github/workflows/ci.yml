@@ -1,9 +1,10 @@
-name: Pactum API Tests
+name: Cypress Tests
 
 on:
   push:
     branches:
       - main
+      - exercicios/modulo-4
   workflow_dispatch:
 
 permissions:
@@ -25,12 +26,12 @@ jobs:
       - name: Instalar dependências
         run: npm install
 
-      - name: Executar testes PactumJS
-        run: npm test
+      - name: Executar testes Cypress
+        run: npx cypress run
 
       - name: Publicar relatório no GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./mochawesome-report
+          publish_dir: ./cypress/reports
