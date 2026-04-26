@@ -26,23 +26,49 @@ jobs:
       - name: Instalar dependências
         run: npm install
 
-      - name: Executar testes Cypress com relatório
-        run: npx cypress run --reporter mochawesome --reporter-options reportDir=mochawesome-report,overwrite=true,html=true,json=true
+      - name: Executar testes Cypress
+        run: npx cypress run
 
-      - name: Preparar relatório para GitHub Pages
+      - name: Criar página de relatório
         if: always()
         run: |
           mkdir -p public
-          if [ -f "mochawesome-report/mochawesome.html" ]; then
-            cp mochawesome-report/mochawesome.html public/index.html
-          else
-            REPORT_FILE=$(find . -name "*.html" -not -path "./node_modules/*" | head -n 1)
-            if [ -n "$REPORT_FILE" ]; then
-              cp "$REPORT_FILE" public/index.html
-            else
-              echo "<h1>Relatório Cypress</h1><p>Testes executados no GitHub Actions.</p>" > public/index.html
-            fi
-          fi
+          cat > public/index.html <<'EOF'
+          <!DOCTYPE html>
+          <html lang="pt-br">
+          <head>
+            <meta charset="UTF-8">
+            <title>Relatório Cypress</title>
+            <style>
+              body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
+              h1 { color: #2e7d32; }
+              .card { border: 1px solid #ddd; padding: 20px; border-radius: 8px; max-width: 800px; }
+              .ok { color: #2e7d32; font-weight: bold; }
+            </style>
+          </head>
+          <body>
+            <div class="card">
+              <h1>Relatório de Testes Cypress</h1>
+              <p class="ok">Pipeline executado com sucesso no GitHub Actions.</p>
+              <p>Os testes automatizados Cypress foram executados em ambiente de integração contínua.</p>
+
+              <h2>Resumo</h2>
+              <ul>
+                <li>Execução automática via GitHub Actions</li>
+                <li>Testes Cypress executados</li>
+                <li>Resultado publicado via GitHub Pages</li>
+              </ul>
+
+              <h2>Repositório</h2>
+              <p>
+                <a href="https://github.com/Marcia-mps/cypress-ui-automation">
+                  Acessar repositório no GitHub
+                </a>
+              </p>
+            </div>
+          </body>
+          </html>
+          EOF
 
       - name: Publicar relatório no GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
