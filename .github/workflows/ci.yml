@@ -26,20 +26,27 @@ jobs:
       - name: Instalar dependências
         run: npm install
 
-      - name: Executar testes Cypress com Mochawesome
+      - name: Executar testes Cypress com relatório
+        run: npx cypress run --reporter mochawesome --reporter-options reportDir=mochawesome-report,overwrite=true,html=true,json=true
+
+      - name: Preparar relatório para GitHub Pages
+        if: always()
         run: |
-          npx cypress run --reporter mochawesome --reporter-options reportDir=cypress/reports,overwrite=true,html=true,json=true
+          mkdir -p public
+          if [ -f "mochawesome-report/mochawesome.html" ]; then
+            cp mochawesome-report/mochawesome.html public/index.html
+          else
+            REPORT_FILE=$(find . -name "*.html" -not -path "./node_modules/*" | head -n 1)
+            if [ -n "$REPORT_FILE" ]; then
+              cp "$REPORT_FILE" public/index.html
+            else
+              echo "<h1>Relatório Cypress</h1><p>Testes executados no GitHub Actions.</p>" > public/index.html
+            fi
+          fi
 
-      - name: Verificar arquivos gerados
-        run: ls -R
-
-      - name: Preparar relatório
-        run: |
-          mkdir public
-          cp mochawesome-report/mochawesome.html public/index.html
-
-      - name: Publicar no GitHub Pages
+      - name: Publicar relatório no GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
+        if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
